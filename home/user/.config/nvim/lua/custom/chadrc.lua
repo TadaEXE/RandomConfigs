@@ -6,6 +6,8 @@ vim.keymap.set({'i'}, '<C-y>', '<cmd>redo<cr>')
 
 vim.opt.relativenumber = true
 
+vim.o.scrolloff = 7
+
  local M = {}
  M.ui = { theme = 'oxocarbon' }
  M.plugins = "custom.plugins"
