@@ -85,6 +85,13 @@ local plugins = {
     end,
   },
   {
+    "Civitasv/cmake-tools.nvim",
+    event = "VeryLazy",
+    config = function ()
+      require('cmake-tools').setup {}
+    end
+  },
+  {
     "williamboman/mason.nvim",
     opts = {
       ensure_installed = {
