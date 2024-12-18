@@ -91,7 +91,7 @@ local plugins = {
         "clangd",
         "clang-format",
         "codelldb",
-        "rust-analyzer@2024-12-09",
+        "rust-analyzer",
       }
     }
   }
