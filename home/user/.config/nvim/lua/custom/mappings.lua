@@ -33,6 +33,23 @@ M.crates = {
   }
 }
 
+M.cmake = {
+  n = {
+    ["<leader>cb"] = {
+      "<cmd>CMakeBuild<cr>",
+      "Trigger cmake build"
+    },
+    ["<leader>cr"] = {
+      "<cmd>CMakeRun<cr>",
+      "Trigger cmake build and run"
+    },
+    ["<leader>cc"] = {
+      "<cmd>CMakeClean<cr>",
+      "Trigger cmake clean"
+    }
+  }
+}
+
 M.tabs = {
   n = {
   ["<leader>1"] = {
@@ -82,6 +99,10 @@ M.tabs = {
   ["<leader><BS>"] = {
     "<cmd>tabclose<cr>",
     "Close current tab"
+  },
+  ["<leader><cr>"] ={
+    "<cmd>tabnew<cr>",
+    "Open new tab"
   },
 }
 }
