@@ -69,6 +69,10 @@ local plugins = {
       crates.show()
     end
   },
+  -- {
+  --   'hrsh7th/cmp-nvim-lsp-signature-help',
+  --   dependencies = "hrsh7th/nvim-cmp"
+  -- },
   {
     "hrsh7th/nvim-cmp",
     opts = function ()
@@ -84,6 +88,25 @@ local plugins = {
       require "custom.configs.lspconfig"
     end,
   },
+  {
+    "ray-x/lsp_signature.nvim",
+    event = "InsertEnter",
+    -- opts = {
+    --   bind = true,
+    --   handler_opts = {
+    --     border = "rounded"
+    --   }
+    -- },
+    -- config = function(_, opts) require'lsp_signature'.setup(opts) end
+  },
+  -- {
+  --   "folke/noice.nvim",
+  --   opts = function(_, opts)
+  --     opts.lsp.signature = {
+  --       auto_open = { enabled = true },
+  --     }
+  --   end,
+  -- },
   {
     "Civitasv/cmake-tools.nvim",
     event = "VeryLazy",
