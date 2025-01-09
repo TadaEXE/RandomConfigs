@@ -1,8 +1,21 @@
 local plugins = {
   {
+    "Shatur/neovim-session-manager",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    lazy = false,
+    config = function()
+      local Path = require('plenary.path')
+      require('session_manager').setup({
+        sessions_dir = Path:new(vim.fn.stdpath('data'), 'sessions'),
+        autoload_mode = require('session_manager.config').AutoloadMode.CurrentDir,
+        autosave_last_session = true,
+      })
+    end,
+  },
+  {
     "rcarriga/nvim-dap-ui",
     event = "VeryLazy",
-    dependencies = {"mfussenegger/nvim-dap", "nvim-neotest/nvim-nio"},
+    dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" },
     config = function()
       local dap = require("dap")
       local dapui = require("dapui")
@@ -45,25 +58,25 @@ local plugins = {
   {
     "rust-lang/rust.vim",
     ft = "rust",
-    init = function ()
+    init = function()
     end
   },
   {
     "simrat39/rust-tools.nvim",
     ft = "rust",
     dependencies = "neovim/nvim-lspconfig",
-    opts = function ()
+    opts = function()
       return require "custom.configs.rust-tools"
     end,
-    config = function (_, opts)
+    config = function(_, opts)
       require('rust-tools').setup(opts)
     end
   },
   {
     'saecki/crates.nvim',
     dependencies = "hrsh7th/nvim-cmp",
-    ft = {"rust", "toml"},
-    config = function (_, opts)
+    ft = { "rust", "toml" },
+    config = function(_, opts)
       local crates = require('crates')
       crates.setup(opts)
       crates.show()
@@ -75,9 +88,9 @@ local plugins = {
   -- },
   {
     "hrsh7th/nvim-cmp",
-    opts = function ()
+    opts = function()
       local M = require "plugins.configs.cmp"
-      table.insert(M.sources, {name = "crates"})
+      table.insert(M.sources, { name = "crates" })
       return M
     end
   },
@@ -110,7 +123,7 @@ local plugins = {
   {
     "Civitasv/cmake-tools.nvim",
     event = "VeryLazy",
-    config = function ()
+    config = function()
       require('cmake-tools').setup {}
     end
   },
