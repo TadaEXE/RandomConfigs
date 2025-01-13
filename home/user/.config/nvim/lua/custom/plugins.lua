@@ -46,6 +46,7 @@ local plugins = {
     "mfussenegger/nvim-dap",
     config = function(_, _)
       require("core.utils").load_mappings("dap")
+      vim.fn.sign_define('DapBreakpoint', { text = '🟥', texthl = '', linehl = '', numhl = '' })
     end
   },
   {

@@ -36,18 +36,28 @@ M.dap = {
       "<cmd> DapToggleBreakpoint <CR>",
       "Add breakpoint at line",
     },
+    ["<leader>ds"] = {
+      "<cmd> DapStepOver <CR>",
+      "Step over"
+    },
+    ["<leader>di"] = {
+      "<cmd> DapStepInto <CR>",
+      "Step into"
+    },
+    ["<leader>do"] = {
+      "<cmd> DapStepOut <CR>",
+      "Step out"
+    },
+    ["<leader>dh"] = {
+      function ()
+        require('dap.ui.widgets').hover()
+      end,
+      "Hover"
+    },
     ["<leader>dr"] = {
       "<cmd> DapContinue <CR>",
       "Start or continue the debugger",
     },
-    ["<leader>dus"] = {
-      function()
-        local widgets = require('dap.ui.widgets');
-        local sidebar = widgets.sidebar(widgets.scopes);
-        sidebar.open();
-      end,
-      "Open debugging sidebar"
-    }
   }
 }
 
