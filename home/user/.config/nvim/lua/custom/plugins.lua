@@ -47,6 +47,15 @@ local plugins = {
     config = function(_, _)
       require("core.utils").load_mappings("dap")
       vim.fn.sign_define('DapBreakpoint', { text = '󰯰', texthl = '', linehl = '', numhl = '' })
+      local dap = require('dap')
+      dap.adapters.codelldb = {
+        type = "executable",
+        command = "codelldb", -- or if not in $PATH: "/absolute/path/to/codelldb"
+
+        -- On windows you may have to uncomment this:
+        -- detached = false,
+
+      }
     end
   },
   {
@@ -123,9 +132,10 @@ local plugins = {
   -- },
   {
     "Civitasv/cmake-tools.nvim",
+    dependencies = { "zbirenbaum/nvterm" },
     event = "VeryLazy",
     config = function()
-      require('cmake-tools').setup {}
+      require "custom.configs.cmake-tools-config"
     end
   },
   {

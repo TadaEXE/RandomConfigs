@@ -99,7 +99,7 @@ function M.smart_resize(direction)
   elseif left then
     move_split(direction, true, true)
   elseif right then
-    move_split(direction, true, false)
+    move_split(direction, false, false)
   elseif up then
     move_split(direction, true, true)
   elseif down then
