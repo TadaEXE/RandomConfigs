@@ -2,6 +2,9 @@ dofile(vim.g.base46_cache .. "telescope")
 
 return {
   defaults = {
+    file_ignore_patterns = { "^%.*/", -- ignore hidden folders in root
+      "/%.*/",                        -- ignore hidden folders anywhere in the path
+    },
     prompt_prefix = "   ",
     selection_caret = " ",
     entry_prefix = " ",
