@@ -4,7 +4,7 @@ pcall(function()
 end)
 
 return {
-  ensure_installed = { "python", "lua", "luadoc", "printf", "vim", "vimdoc", "c", "cpp", "cmake", "markdown", "javascript", "typescript", "toml", "yaml", "json" },
+  ensure_installed = { "latex", "bibtex", "python", "lua", "luadoc", "printf", "vim", "vimdoc", "c", "cpp", "cmake", "markdown", "javascript", "typescript", "toml", "yaml", "json" },
 
   highlight = {
     enable = true,

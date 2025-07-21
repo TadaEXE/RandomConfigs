@@ -26,6 +26,11 @@ lspconfig.ts_ls.setup({
   },
 })
 
+lspconfig.texlab.setup({
+  on_attach = on_attach,
+  capabilities = capabilities,
+})
+
 local sig_help_cfg = {
   debug = false,                                              -- set to true to enable debug logging
   log_path = vim.fn.stdpath("cache") .. "/lsp_signature.log", -- log dir when debug is on

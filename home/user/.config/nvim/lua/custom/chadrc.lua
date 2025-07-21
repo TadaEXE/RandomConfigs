@@ -11,7 +11,7 @@ vim.opt.relativenumber = true
 vim.o.scrolloff = 7
 
 local M = {}
-M.ui = { theme = 'nightfox' }
+M.ui = { theme = 'decay' }
 M.plugins = "custom.plugins"
 M.mappings = require("custom.mappings")
 return M
