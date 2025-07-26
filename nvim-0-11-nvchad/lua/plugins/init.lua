@@ -125,6 +125,7 @@ return {
 
 	{
 		"nvim-treesitter/nvim-treesitter",
+		lazy = false,
 		opts = {
 			ensure_installed = {
 				"vim",
@@ -136,6 +137,12 @@ return {
 				"c",
 				"python",
 				"markdown",
+				"markdown_inline",
+				"latex",
+				"typst",
+				"yaml",
+				"toml",
+				"json",
 				"javascript",
 				"typescript",
 				"rust",
@@ -143,26 +150,61 @@ return {
 		},
 	},
 	{
-		"nvim-treesitter/nvim-treesitter-context",
+		"OXY2DEV/markview.nvim",
+		priority = 1000,
+		event = "BufRead *.md",
+
+		-- For blink.cmp's completion
+		-- source
+		-- dependencies = {
+		--     "saghen/blink.cmp"
+		-- },
+	},
+	{
+		"s1n7ax/nvim-window-picker",
+		name = "window-picker",
 		event = "VeryLazy",
-		opts = {
-			mode = "cursor",
-			max_lines = 1,
+		version = "2.*",
+		config = function()
+			require("window-picker").setup({
+				hint = "floating-letter",
+			})
+		end,
+	},
+	{
+		"nvim-neo-tree/neo-tree.nvim",
+		branch = "v3.x",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"MunifTanjim/nui.nvim",
+			"nvim-tree/nvim-web-devicons", -- optional, but recommended
 		},
+		config = function()
+			require("configs.neo_tree")
+		end,
+		lazy = false, -- neo-tree will lazily load itself
+	},
+	-- Stuff from NvChad I don't need --
+	{
+		"nvim-tree/nvim-tree.lua",
+		enabled = false,
 	},
 	-- {
-	--   "mason-org/mason.nvim",
-	--   opts = {
-	--     ensure_installed = {
-	--       "clangd",
-	--       "clang-format",
-	--       "codelldb",
-	--       "rust-analyzer",
-	--       "css-lsp",
-	--       "html-lsp",
-	--       "lua-language-server",
-	--       "stylua",
-	--     },
-	--   },
+	-- 	"mason-org/mason.nvim",
+	--    lazy = false,
+	-- 	opts = {
+	-- 		ensure_installed = {
+	-- 			"clangd",
+	-- 			"clang-format",
+	-- 			"codelldb",
+	-- 			"pyright",
+	-- 			"rust-analyzer",
+	-- 			"css-lsp",
+	-- 			"typos-lsp",
+	-- 			"html-lsp",
+	-- 			"lua-language-server",
+	-- 			"stylua",
+	-- 		},
+	-- 	},
 	-- },
 }

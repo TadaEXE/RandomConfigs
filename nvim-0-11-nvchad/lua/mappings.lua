@@ -10,6 +10,7 @@ map("i", "jk", "<ESC>", { desc = "System go normal mode" })
 map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>", { desc = "System save current buffer to file" })
 vim.keymap.del("n", "<tab>") -- Restores original jumplist behavior
 map("i", "<C-f>", "<C-[>diwi", { desc = "System delete word forward (opposite of <C-w>)" })
+map("n", "<leader>x", "<cmd>bd<cr>", {desc = "System Close current buffer", noremap = true})
 
 -- Harpoon --
 local harpoon = require("harpoon")
@@ -19,10 +20,18 @@ end)
 vim.keymap.set("n", "m", function()
 	harpoon.ui:toggle_quick_menu(harpoon:list())
 end)
--- vim.keymap.set("n", "<C-h>", function() harpoon:list():select(1) end)
--- Toggle previous & next buffers stored within Harpoon list
--- vim.keymap.set("n", "m", function() harpoon:list():prev() end)
--- vim.keymap.set("n", "<C-m>", function() harpoon:list():next() end)
+vim.keymap.set("n", "<leader>4", function()
+	harpoon:list():select(1)
+end)
+vim.keymap.set("n", "<leader>5", function()
+	harpoon:list():select(2)
+end)
+vim.keymap.set("n", "<leader>7", function()
+	harpoon:list():select(3)
+end)
+vim.keymap.set("n", "<leader>8", function()
+	harpoon:list():select(4)
+end)
 
 -- DAP --
 map("n", "<leader>db", "<cmd> DapToggleBreakpoint <cr>", { desc = "DAP Add breakpoint at line" })
@@ -55,3 +64,8 @@ map("n", "<leader>o", tsbuiltin.oldfiles, { desc = "Telescope Open old files" })
 -- Git --
 map("n", "<leader>gb", "<cmd>Gitsigns blame<cr>", { desc = "Git Blame" })
 map("n", "<leader>gcb", "<cmd>Gitsigns toggle_current_line_blame<cr>", { desc = "Git Toggle blame for current line" })
+
+-- Neotree --
+map("n", "<C-n>", "<cmd>Neotree toggle<cr>", {desc = "Neotree Toggle file tree", noremap = true})
+map("n", "<leader>e", "<cmd>Neotree reveal left<cr>", {desc = "Neotree Reveal current file in file tree", noremap = true})
+
