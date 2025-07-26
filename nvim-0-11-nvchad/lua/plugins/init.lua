@@ -68,13 +68,6 @@ return {
 	{
 		"ray-x/lsp_signature.nvim",
 		event = "InsertEnter",
-		-- opts = {
-		--   bind = true,
-		--   handler_opts = {
-		--     border = "rounded"
-		--   }
-		-- },
-		-- config = function(_, opts) require'lsp_signature'.setup(opts) end
 		config = function()
 			require("configs.lsp_signature")
 		end,
@@ -149,6 +142,7 @@ return {
 			},
 		},
 	},
+	{ "nvim-treesitter/nvim-treesitter-context", event = "VeryLazy", opts = { mode = "cursor", maxlines = 1 } },
 	{
 		"OXY2DEV/markview.nvim",
 		priority = 1000,
