@@ -92,6 +92,11 @@ return {
 		ft = "rust",
 	},
 	{
+		"hrsh7th/nvim-cmp",
+    lazy = false,
+		config = function() require("configs.cmp") end,
+	},
+	{
 		"saecki/crates.nvim",
 		dependencies = "hrsh7th/nvim-cmp",
 		ft = { "rust", "toml" },
@@ -112,10 +117,13 @@ return {
 		branch = "harpoon2",
 		dependencies = { "nvim-lua/plenary.nvim" },
 	},
-
 	-- test new blink
-	-- { import = "nvchad.blink.lazyspec" },
-
+	-- {
+	-- 	import = "nvchad.blink.lazyspec",
+	-- 	opts = function(_, _)
+	-- 		require("configs.blink-cmp")
+	-- 	end,
+	-- },
 	{
 		"nvim-treesitter/nvim-treesitter",
 		lazy = false,
