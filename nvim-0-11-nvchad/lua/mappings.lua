@@ -6,32 +6,33 @@ local map = vim.keymap.set
 
 -- System --
 map("n", ";", ":", { desc = "System enter command mode" })
-map("i", "jk", "<ESC>", { desc = "System go normal mode" })
+map("i", "jf", "<ESC>", { desc = "System go normal mode" })
+map("i", "fj", "<ESC>", { desc = "System go normal mode" })
 map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>", { desc = "System save current buffer to file" })
 vim.keymap.del("n", "<tab>") -- Restores original jumplist behavior
 map("i", "<C-f>", "<C-[>diwi", { desc = "System delete word forward (opposite of <C-w>)" })
-map("n", "<leader>x", "<cmd>bd<cr>", {desc = "System Close current buffer", noremap = true})
+map("n", "<leader>x", "<cmd>bd<cr>", { desc = "System Close current buffer", noremap = true })
 
 -- Harpoon --
 local harpoon = require("harpoon")
-vim.keymap.set("n", "<leader>m", function()
+vim.keymap.set("n", "<leader>H", function()
 	harpoon:list():add()
-end)
-vim.keymap.set("n", "m", function()
+end, { desc = "Harpoon Add current buffer to list", noremap = true })
+vim.keymap.set("n", "<leader>h", function()
 	harpoon.ui:toggle_quick_menu(harpoon:list())
-end)
+end, { desc = "Harpoon Open quick menu", noremap = true })
 vim.keymap.set("n", "<leader>4", function()
 	harpoon:list():select(1)
-end)
+end, { desc = "Harpoon Open list item 1", noremap = true })
 vim.keymap.set("n", "<leader>5", function()
 	harpoon:list():select(2)
-end)
+end, { desc = "Harpoon Open list item 2", noremap = true })
 vim.keymap.set("n", "<leader>7", function()
 	harpoon:list():select(3)
-end)
+end, { desc = "Harpoon Open list item 3", noremap = true })
 vim.keymap.set("n", "<leader>8", function()
 	harpoon:list():select(4)
-end)
+end, { desc = "Harpoon Open list item 4", noremap = true })
 
 -- DAP --
 map("n", "<leader>db", "<cmd> DapToggleBreakpoint <cr>", { desc = "DAP Add breakpoint at line" })
@@ -66,6 +67,14 @@ map("n", "<leader>gb", "<cmd>Gitsigns blame<cr>", { desc = "Git Blame" })
 map("n", "<leader>gcb", "<cmd>Gitsigns toggle_current_line_blame<cr>", { desc = "Git Toggle blame for current line" })
 
 -- Neotree --
-map("n", "<C-n>", "<cmd>Neotree toggle<cr>", {desc = "Neotree Toggle file tree", noremap = true})
-map("n", "<leader>e", "<cmd>Neotree reveal left<cr>", {desc = "Neotree Reveal current file in file tree", noremap = true})
+map("n", "<C-n>", "<cmd>Neotree toggle<cr>", { desc = "Neotree Toggle file tree", noremap = true })
+map(
+	"n",
+	"<leader>e",
+	"<cmd>Neotree reveal left<cr>",
+	{ desc = "Neotree Reveal current file in file tree", noremap = true }
+)
 
+-- Markview --
+map("n", "<leader>mt", "<cmd>Markview Toggle<cr>", { desc = "Markview Toggle inplace markdown rendering" })
+map("n", "<leader>ms", "<cmd>Markview splitToggle<cr>", { desc = "Markview Toggle split view markdown rentering" })

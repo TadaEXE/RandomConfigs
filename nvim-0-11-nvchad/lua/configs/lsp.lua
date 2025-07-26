@@ -10,7 +10,7 @@ vim.diagnostic.config {
 }
 
 -- LSP --
-local servers = { "html", "cssls", "clangd", "rust", "typescript_language_server", "pyright", "typos_lsp" }
+local servers = { "luals", "html", "cssls", "clangd", "rust", "typescript_language_server", "pyright", "typos_lsp" }
 
 vim.lsp.enable(servers)
 -- read :h vim.lsp.config for changing options of lsp servers
