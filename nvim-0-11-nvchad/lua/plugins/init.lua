@@ -1,4 +1,5 @@
 return {
+	{ dir = "~/Projects/winctrl.nvim" },
 	{
 		"pmizio/typescript-tools.nvim",
 		dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
@@ -93,8 +94,14 @@ return {
 	},
 	{
 		"hrsh7th/nvim-cmp",
-    lazy = false,
-		config = function() require("configs.cmp") end,
+		lazy = false,
+		config = function()
+			require("configs.cmp")
+		end,
+	},
+	{
+		"hrsh7th/cmp-path",
+		lazy = false,
 	},
 	{
 		"saecki/crates.nvim",
