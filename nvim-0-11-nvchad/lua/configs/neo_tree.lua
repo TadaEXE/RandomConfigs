@@ -1,4 +1,10 @@
 require("neo-tree").setup({
+  sources = {
+    "filesystem",
+    "buffers",
+    "git_status",
+    "document_symbols",
+  },
 	window = {
 		mappings = {
 			["<cr>"] = {
@@ -15,6 +21,11 @@ require("neo-tree").setup({
 	},
 	source_selector = {
 		winbar = true,
-		statusline = flase,
+    sources = {
+      { source = "filesystem" },
+      { source = "document_symbols" },
+      { source = "git_status" },
+      { source = "buffers" },
+    }
 	},
 })
