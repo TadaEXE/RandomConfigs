@@ -13,6 +13,29 @@ vim.keymap.del("n", "<tab>") -- Restores original jumplist behavior
 map("i", "<C-f>", "<C-[>ldwi", { desc = "System delete word forward (opposite of <C-w>)" })
 map("n", "<leader>x", "<cmd>bd<cr>", { desc = "System Close current buffer", noremap = true })
 
+-- LSP --
+map("n", "grk", function()
+	vim.diagnostic.config({
+		virtual_lines = {
+			current_line = true,
+		},
+	})
+	vim.diagnostic.show(nil, 0)
+	vim.api.nvim_create_autocmd("CursorMoved", {
+		buffer = 0,
+		once = true,
+		callback = function()
+			vim.diagnostic.config({
+				virtual_lines = false,
+			})
+		end,
+	})
+end, { desc = "LSP Show virtual diagnostics for current line once" })
+map("n", "grd", vim.diagnostic.open_float, { desc = "LSP Open diagnostic float" })
+map("n", "gri", function()
+	vim.lsp.inlay_hint.enable(not vim.lsp.is_enabled or false)
+end, { desc = "LSP Toggle inlay hints" })
+
 -- Harpoon --
 local harpoon = require("harpoon")
 vim.keymap.set("n", "<leader>H", function()
