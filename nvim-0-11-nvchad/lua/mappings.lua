@@ -32,8 +32,9 @@ map("n", "grk", function()
 	})
 end, { desc = "LSP Show virtual diagnostics for current line once" })
 map("n", "grd", vim.diagnostic.open_float, { desc = "LSP Open diagnostic float" })
-map("n", "gri", function()
-	vim.lsp.inlay_hint.enable(not vim.lsp.is_enabled or false)
+map("n", "grh", function()
+	vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled() or false)
+  print("Inlay hints " .. (vim.lsp.inlay_hint.is_enabled() and "ON" or "OFF"))
 end, { desc = "LSP Toggle inlay hints" })
 
 -- Harpoon --

@@ -1,8 +1,15 @@
 return {
-  {
-    "wgsl-analyzer/wgsl-analyzer",
+	{
+		dir = "~/Projects/winctrl.nvim",
+		config = function()
+      require("winctrl").setup()
+		end,
     lazy = false,
-  },
+	},
+	{
+		"wgsl-analyzer/wgsl-analyzer",
+		lazy = false,
+	},
 	{
 		"pmizio/typescript-tools.nvim",
 		dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
