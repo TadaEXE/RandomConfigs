@@ -16,6 +16,7 @@ local servers = {
 	"pyright",
 	"typos_lsp",
 	"wgsl_analyzer",
+  "svelteserver",
 }
 
 vim.lsp.inlay_hint.enable(true)

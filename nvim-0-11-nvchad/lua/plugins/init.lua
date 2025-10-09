@@ -164,6 +164,7 @@ return {
 				"javascript",
 				"typescript",
 				"rust",
+        "svelte",
 			},
 		},
 	},
