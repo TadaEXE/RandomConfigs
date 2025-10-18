@@ -9,7 +9,6 @@ map("n", ";", ":", { desc = "System enter command mode" })
 map("i", "jf", "<ESC>", { desc = "System go normal mode" })
 map("i", "fj", "<ESC>", { desc = "System go normal mode" })
 map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>", { desc = "System save current buffer to file" })
-vim.keymap.del("n", "<tab>") -- Restores original jumplist behavior
 map("i", "<C-f>", "<C-[>ldwi", { desc = "System delete word forward (opposite of <C-w>)" })
 map("n", "<leader>x", "<cmd>bd<cr>", { desc = "System Close current buffer", noremap = true })
 
@@ -34,7 +33,7 @@ end, { desc = "LSP Show virtual diagnostics for current line once" })
 map("n", "grd", vim.diagnostic.open_float, { desc = "LSP Open diagnostic float" })
 map("n", "grh", function()
 	vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled() or false)
-  print("Inlay hints " .. (vim.lsp.inlay_hint.is_enabled() and "ON" or "OFF"))
+	print("Inlay hints " .. (vim.lsp.inlay_hint.is_enabled() and "ON" or "OFF"))
 end, { desc = "LSP Toggle inlay hints" })
 
 -- Harpoon --

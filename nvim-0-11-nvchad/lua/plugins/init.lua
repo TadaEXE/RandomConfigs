@@ -1,12 +1,5 @@
 return {
 	{
-		dir = "~/Projects/winctrl.nvim",
-		config = function()
-			require("winctrl").setup()
-		end,
-		lazy = false,
-	},
-	{
 		"wgsl-analyzer/wgsl-analyzer",
 		lazy = false,
 	},
@@ -173,15 +166,10 @@ return {
 		"OXY2DEV/markview.nvim",
 		lazy = false,
 
-		opts = {
-			experimental = {
-				check_rtp_message = false,
-			},
-			preview = {
-				enable = false,
-			},
+		config = function()
+			require("configs.markview")
+		end,
 		},
-	},
 	{
 		"s1n7ax/nvim-window-picker",
 		name = "window-picker",
