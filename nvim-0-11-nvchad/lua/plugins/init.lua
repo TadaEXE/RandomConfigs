@@ -2,9 +2,9 @@ return {
 	{
 		dir = "~/Projects/winctrl.nvim",
 		config = function()
-      require("winctrl").setup()
+			require("winctrl").setup()
 		end,
-    lazy = false,
+		lazy = false,
 	},
 	{
 		"wgsl-analyzer/wgsl-analyzer",
@@ -164,21 +164,23 @@ return {
 				"javascript",
 				"typescript",
 				"rust",
-        "svelte",
+				"svelte",
 			},
 		},
 	},
 	{ "nvim-treesitter/nvim-treesitter-context", event = "VeryLazy", opts = { mode = "cursor", maxlines = 1 } },
 	{
 		"OXY2DEV/markview.nvim",
-		priority = 1000,
-		event = "BufRead *.md",
+		lazy = false,
 
-		-- For blink.cmp's completion
-		-- source
-		-- dependencies = {
-		--     "saghen/blink.cmp"
-		-- },
+		opts = {
+			experimental = {
+				check_rtp_message = false,
+			},
+			preview = {
+				enable = false,
+			},
+		},
 	},
 	{
 		"s1n7ax/nvim-window-picker",
