@@ -4,6 +4,15 @@ require("nvchad.mappings")
 
 local map = vim.keymap.set
 
+local function feed(keys)
+	vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(keys, true, false, true), "n", false)
+end
+
+local function replace_at(r, c1)
+	vim.api.nvim_win_set_cursor(0, { r, c1 - 1 })
+	feed("r<cr>")
+end
+
 -- System --
 map("n", ";", ":", { desc = "System enter command mode" })
 map("i", "jf", "<ESC>", { desc = "System go normal mode" })
@@ -11,6 +20,69 @@ map("i", "fj", "<ESC>", { desc = "System go normal mode" })
 map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>", { desc = "System save current buffer to file" })
 map("i", "<C-f>", "<C-[>ldwi", { desc = "System delete word forward (opposite of <C-w>)" })
 map("n", "<leader>x", "<cmd>bd<cr>", { desc = "System Close current buffer", noremap = true })
+map("n", "<M-l>", function()
+	local row, col0 = unpack(vim.api.nvim_win_get_cursor(0))
+	local line = vim.api.nvim_get_current_line()
+	local col1 = col0 + 1
+	-- Space under cursor that is preceded by \S ?
+	if line:sub(col1, col1) == " " and col1 > 1 and not line:sub(col1 - 1, col1 - 1):match("%s") then
+		replace_at(row, col1)
+		return
+	end
+	-- Next match to the right on the same line:  \S\zs<space>
+	local pat_right = "\\%>" .. col0 .. "c\\S\\zs "
+	local right = vim.fn.searchpos(pat_right, "nW", row)
+	if right[1] ~= 0 then
+		replace_at(row, right[2])
+		return
+	end
+end, { desc = "System Replace next not indenting space with a new line" })
+map("n", "<M-h>", function()
+	local row, col0 = unpack(vim.api.nvim_win_get_cursor(0))
+	-- Previous match to the left on the same line
+	local pat_left = "\\%<" .. col0 .. "c\\S\\zs "
+	local left = vim.fn.searchpos(pat_left, "nbW", row)
+	if left[1] ~= 0 then
+		replace_at(row, left[2])
+		return
+	end
+end, { desc = "System Replace previous non indenting space with new line" })
+map("n", "<M-j>", function()
+	local row, col0 = unpack(vim.api.nvim_win_get_cursor(0))
+	local line = vim.api.nvim_get_current_line()
+	local col1 = col0 + 1
+	-- '{' under cursor
+	if line:sub(col1, col1) == "{" then
+    feed("li<cr><esc>")
+		return
+	end
+  -- Previous '{' to the left on this line
+	local pat_left = "\\%<" .. col1 .. "c{"
+	local left = vim.fn.searchpos(pat_left, "nbW", row)
+	if left[1] ~= 0 then
+    vim.api.nvim_win_set_cursor(0, { row, left[2]})
+    feed("i<cr><esc>")
+		return
+	end
+end, { desc = "System insert newline infront of next {" })
+map("n", "<M-k>", function()
+	local row, col0 = unpack(vim.api.nvim_win_get_cursor(0))
+	local line = vim.api.nvim_get_current_line()
+	local col1 = col0 + 1
+	-- '}' under cursor
+	if line:sub(col1, col1) == "}" then
+    feed("i<cr><esc>")
+		return
+	end
+	-- Next '}' to the right on this line
+	local pat_right = "\\%>" .. col0 .. "c}"
+	local right = vim.fn.searchpos(pat_right, "nW", row)
+	if right[1] ~= 0 then
+    vim.api.nvim_win_set_cursor(0, { row, right[2] - 1})
+    feed("i<cr><esc>")
+		return
+	end
+end, { desc = "System insert new line infront of next }" })
 
 -- LSP --
 map("n", "grk", function()

@@ -17,6 +17,8 @@ local servers = {
 	"typos_lsp",
 	"wgsl_analyzer",
   "svelteserver",
+  "gdscript",
+  "csharp_ls",
 }
 
 vim.lsp.inlay_hint.enable(true)
