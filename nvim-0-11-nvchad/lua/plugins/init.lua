@@ -1,5 +1,38 @@
 return {
 	{
+		"kawre/leetcode.nvim",
+		lazy = false,
+		build = ":TSUpdate html", -- if you have `nvim-treesitter` installed
+		dependencies = {
+			-- include a picker of your choice, see picker section for more details
+			"nvim-lua/plenary.nvim",
+			"MunifTanjim/nui.nvim",
+		},
+		opts = {
+			arg = "leetcode",
+			storage = {
+				home = "/home/tada/p/leetcode",
+				cache = "/home/tada/p/leetcode",
+			},
+			injector = {
+				["python3"] = {
+					imports = function(default_imports)
+						vim.list_extend(default_imports, { "from .leetcode import *" })
+						return default_imports
+					end,
+					after = { "def test():", "    print('test')" },
+				},
+				["cpp"] = {
+					imports = function()
+						-- return a different list to omit default imports
+						return { "#include <bits/stdc++.h>", "using namespace std;" }
+					end,
+					after = "int main() {}",
+				},
+			},
+		},
+	},
+	{
 		"wgsl-analyzer/wgsl-analyzer",
 		lazy = false,
 	},
@@ -158,9 +191,9 @@ return {
 				"typescript",
 				"rust",
 				"svelte",
-        "gdscript",
-        "godot_resource",
-        "gdshader",
+				"gdscript",
+				"godot_resource",
+				"gdshader",
 			},
 		},
 	},
@@ -172,7 +205,7 @@ return {
 		config = function()
 			require("configs.markview")
 		end,
-		},
+	},
 	{
 		"s1n7ax/nvim-window-picker",
 		name = "window-picker",
