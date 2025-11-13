@@ -18,7 +18,14 @@ map("n", ";", ":", { desc = "System enter command mode" })
 map("i", "jf", "<ESC>", { desc = "System go normal mode" })
 map("i", "fj", "<ESC>", { desc = "System go normal mode" })
 map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>", { desc = "System save current buffer to file" })
-map("i", "<C-f>", "<esc>dwi", { desc = "System delete word forward (opposite of <C-w>)" })
+map("i", "<C-f>", function()
+	feed("<esc>")
+	local _, col = unpack(vim.api.nvim_win_get_cursor(0))
+	if col > 0 then
+		feed("l")
+	end
+	feed("dwi")
+end, { desc = "System delete word forward (opposite of <C-w>)" })
 map("n", "<leader>x", "<cmd>bd<cr>", { desc = "System Close current buffer", noremap = true })
 map("n", "<M-l>", function()
 	local row, col0 = unpack(vim.api.nvim_win_get_cursor(0))
@@ -53,15 +60,15 @@ map("n", "<M-j>", function()
 	local col1 = col0 + 1
 	-- '{' under cursor
 	if line:sub(col1, col1) == "{" then
-    feed("li<cr><esc>")
+		feed("li<cr><esc>")
 		return
 	end
-  -- Previous '{' to the left on this line
+	-- Previous '{' to the left on this line
 	local pat_left = "\\%<" .. col1 .. "c{"
 	local left = vim.fn.searchpos(pat_left, "nbW", row)
 	if left[1] ~= 0 then
-    vim.api.nvim_win_set_cursor(0, { row, left[2]})
-    feed("i<cr><esc>")
+		vim.api.nvim_win_set_cursor(0, { row, left[2] })
+		feed("i<cr><esc>")
 		return
 	end
 end, { desc = "System insert newline infront of next {" })
@@ -71,15 +78,15 @@ map("n", "<M-k>", function()
 	local col1 = col0 + 1
 	-- '}' under cursor
 	if line:sub(col1, col1) == "}" then
-    feed("i<cr><esc>")
+		feed("i<cr><esc>")
 		return
 	end
 	-- Next '}' to the right on this line
 	local pat_right = "\\%>" .. col0 .. "c}"
 	local right = vim.fn.searchpos(pat_right, "nW", row)
 	if right[1] ~= 0 then
-    vim.api.nvim_win_set_cursor(0, { row, right[2] - 1})
-    feed("i<cr><esc>")
+		vim.api.nvim_win_set_cursor(0, { row, right[2] - 1 })
+		feed("i<cr><esc>")
 		return
 	end
 end, { desc = "System insert new line infront of next }" })
