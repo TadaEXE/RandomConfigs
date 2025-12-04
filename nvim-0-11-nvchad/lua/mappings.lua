@@ -14,10 +14,9 @@ local function replace_at(r, c1)
 end
 
 -- System --
-map("n", ";", ":", { desc = "System enter command mode" })
 map("i", "jf", "<ESC>", { desc = "System go normal mode" })
 map("i", "fj", "<ESC>", { desc = "System go normal mode" })
-map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>", { desc = "System save current buffer to file" })
+map({ "n" }, "<C-s>", "<cmd> w <cr>", { desc = "System save current buffer to file" })
 map("i", "<C-f>", function()
 	feed("<esc>")
 	local _, col = unpack(vim.api.nvim_win_get_cursor(0))

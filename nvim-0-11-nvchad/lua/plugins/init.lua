@@ -56,7 +56,7 @@ return {
 	},
 	{
 		"stevearc/conform.nvim",
-		opts = require("configs.conform-conf"),
+		opts = require("configs.conform"),
 	},
 	{
 		"rcarriga/nvim-dap-ui",
