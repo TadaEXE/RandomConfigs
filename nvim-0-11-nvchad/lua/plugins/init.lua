@@ -103,6 +103,13 @@ return {
 		end,
 	},
 	{
+		"xiyaowong/transparent.nvim",
+		lazy = false,
+		opts = {
+			extra_groups = { "NormalFloat" },
+		},
+	},
+	{
 		"ray-x/lsp_signature.nvim",
 		event = "InsertEnter",
 		config = function()
