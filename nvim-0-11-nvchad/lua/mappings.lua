@@ -176,6 +176,15 @@ map(
 	{ desc = "Neotree Reveal current file in file tree", noremap = true }
 )
 
+-- CMake-Tools --
+map("n", "<leader>cb", "<cmd>CMakeBuild<cr>", { desc = "CMake Run cmake build", noremap = true })
+map("n", "<leader>cc", "<cmd>CMakeClean<cr>", { desc = "CMake Run cmake clean", noremap = true })
+map("n", "<leader>cr", "<cmd>CMakeRun<cr>", { desc = "CMake Run cmake run", noremap = true })
+map("n", "<leader>csp", "<cmd>CMakeSelectBuildPreset<cr>", { desc = "CMake Select build preset", noremap = true })
+map("n", "<leader>cst", "<cmd>CMakeSelectBuildTarget<cr>", { desc = "CMake Select build target", noremap = true })
+map("n", "<leader>csl", "<cmd>CMakeSelectLaunchTarget<cr>", { desc = "CMake Select launch target", noremap = true })
+map("n", "<leader>csc", "<cmd>CMakeSelectConfigurePreset<cr>", { desc = "CMake Select configure preset", noremap = true })
+
 -- Markview --
 map("n", "<leader>mt", "<cmd>Markview Toggle<cr>", { desc = "Markview Toggle inplace markdown rendering" })
 map("n", "<leader>ms", "<cmd>Markview splitToggle<cr>", { desc = "Markview Toggle split view markdown rentering" })
