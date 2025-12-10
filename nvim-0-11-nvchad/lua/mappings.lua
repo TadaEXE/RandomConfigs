@@ -13,7 +13,6 @@ local function replace_at(r, c1)
 	feed("r<cr>")
 end
 
-
 -- System --
 map("i", "jf", "<ESC>", { desc = "System go normal mode" })
 map("i", "fj", "<ESC>", { desc = "System go normal mode" })
@@ -198,3 +197,8 @@ map("n", "<leader>ms", "<cmd>Markview splitToggle<cr>", { desc = "Markview Toggl
 --C/C++ Custom--
 map("n", "<leader>kk", require("ctoggle").toggle, { desc = "C/C++ Toggle header/source" })
 map("n", "<leader>kl", require("ctoggle").vsplit, { desc = "C/C++ Toggle header/source in vsplit" })
+
+--Win-Resize--
+map("n", "<leader>ww", function()
+	require("win_resize").start()
+end, { noremap = true })
