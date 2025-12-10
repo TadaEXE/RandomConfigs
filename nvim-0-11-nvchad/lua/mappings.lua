@@ -13,6 +13,7 @@ local function replace_at(r, c1)
 	feed("r<cr>")
 end
 
+
 -- System --
 map("i", "jf", "<ESC>", { desc = "System go normal mode" })
 map("i", "fj", "<ESC>", { desc = "System go normal mode" })
@@ -149,8 +150,8 @@ map("n", "<leader>dr", "<cmd> DapContinue <cr>", { desc = "DAP Start or continue
 map("n", "<leader>1", "<cmd>tabn 1<cr>", { desc = "Tabs Go to tab 1" })
 map("n", "<leader>2", "<cmd>tabn 2<cr>", { desc = "Tabs Go to tab 2" })
 map("n", "<leader>3", "<cmd>tabn 3<cr>", { desc = "Tabs Go to tab 3" })
-map("n", "<leader><cr>", "<cmd>tabnew<cr>", { desc = "Tabs Open new tab" })
-map("n", "<leader><bs>", "<cmd>tabclose<cr>", { desc = "Tabs Close current tab" })
+map("n", "<leader>+", "<cmd>tabnew<cr>", { desc = "Tabs Open new tab" })
+map("n", "<leader>-", "<cmd>tabclose<cr>", { desc = "Tabs Close current tab" })
 
 -- Telescope --
 local tsbuiltin = require("telescope.builtin")
@@ -172,7 +173,7 @@ map("n", "<C-n>", "<cmd>Neotree toggle<cr>", { desc = "Neotree Toggle file tree"
 map(
 	"n",
 	"<leader>e",
-	"<cmd>Neotree reveal left<cr>",
+	"<cmd>Neotree reveal right<cr>",
 	{ desc = "Neotree Reveal current file in file tree", noremap = true }
 )
 
@@ -183,8 +184,17 @@ map("n", "<leader>cr", "<cmd>CMakeRun<cr>", { desc = "CMake Run cmake run", nore
 map("n", "<leader>csp", "<cmd>CMakeSelectBuildPreset<cr>", { desc = "CMake Select build preset", noremap = true })
 map("n", "<leader>cst", "<cmd>CMakeSelectBuildTarget<cr>", { desc = "CMake Select build target", noremap = true })
 map("n", "<leader>csl", "<cmd>CMakeSelectLaunchTarget<cr>", { desc = "CMake Select launch target", noremap = true })
-map("n", "<leader>csc", "<cmd>CMakeSelectConfigurePreset<cr>", { desc = "CMake Select configure preset", noremap = true })
+map(
+	"n",
+	"<leader>csc",
+	"<cmd>CMakeSelectConfigurePreset<cr>",
+	{ desc = "CMake Select configure preset", noremap = true }
+)
 
 -- Markview --
 map("n", "<leader>mt", "<cmd>Markview Toggle<cr>", { desc = "Markview Toggle inplace markdown rendering" })
 map("n", "<leader>ms", "<cmd>Markview splitToggle<cr>", { desc = "Markview Toggle split view markdown rentering" })
+
+--C/C++ Custom--
+map("n", "<leader>kk", require("ctoggle").toggle, { desc = "C/C++ Toggle header/source" })
+map("n", "<leader>kl", require("ctoggle").vsplit, { desc = "C/C++ Toggle header/source in vsplit" })
