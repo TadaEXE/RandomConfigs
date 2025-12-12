@@ -1,10 +1,21 @@
--- ~/.config/nvim/lua/header_switch.lua
 local M = {}
 
 local header_exts = { ".hpp", ".hh", ".hxx", ".h" }
 local source_exts = { ".cpp", ".cc", ".cxx", ".c" }
 
 local uv = vim.loop
+
+local ignored_filetypes = {
+  ["neo-tree"] = true,
+  ["NvimTree"] = true,
+  ["nerdtree"] = true,
+}
+
+local function is_ignored_window(win)
+  local buf = vim.api.nvim_win_get_buf(win)
+  local ft = vim.bo[buf].filetype
+  return ignored_filetypes[ft] == true
+end
 
 local function ends_with(path, ext)
   return #path >= #ext and path:sub(-#ext) == ext
@@ -79,12 +90,30 @@ local function open_alternate_smart_vsplit()
   local current_win = vim.api.nvim_get_current_win()
   local wins = vim.api.nvim_tabpage_list_wins(0)
 
-  if #wins == 1 then
+  local code_wins = {}
+  for _, win in ipairs(wins) do
+    if not is_ignored_window(win) then
+      table.insert(code_wins, win)
+    end
+  end
+
+  if #code_wins == 0 then
     vim.cmd("vsplit " .. escaped)
     return
   end
 
-  for _, win in ipairs(wins) do
+  if is_ignored_window(current_win) then
+    current_win = code_wins[1]
+    vim.api.nvim_set_current_win(current_win)
+  end
+
+  if #code_wins == 1 then
+    vim.api.nvim_set_current_win(code_wins[1])
+    vim.cmd("vsplit " .. escaped)
+    return
+  end
+
+  for _, win in ipairs(code_wins) do
     local buf = vim.api.nvim_win_get_buf(win)
     local name = vim.api.nvim_buf_get_name(buf)
     if name == alt then
@@ -93,7 +122,7 @@ local function open_alternate_smart_vsplit()
     end
   end
 
-  for _, win in ipairs(wins) do
+  for _, win in ipairs(code_wins) do
     if win ~= current_win then
       vim.api.nvim_set_current_win(win)
       vim.cmd.edit(escaped)
@@ -101,6 +130,7 @@ local function open_alternate_smart_vsplit()
     end
   end
 
+  vim.api.nvim_set_current_win(current_win)
   vim.cmd("vsplit " .. escaped)
 end
 
