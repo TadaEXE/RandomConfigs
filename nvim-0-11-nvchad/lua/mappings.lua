@@ -163,9 +163,9 @@ map("n", "<leader>b", function()
 end, { desc = "Telescope Open buffer view" })
 map("n", "<leader>fk", tsbuiltin.keymaps, { desc = "Telescope Open keymap search" })
 map("n", "<leader>j", function()
-  tsbuiltin.jumplist({
-    initial_mode = "normal",
-  })
+	tsbuiltin.jumplist({
+		initial_mode = "normal",
+	})
 end, { desc = "Telescope Open jumplist" })
 
 -- Git --
@@ -173,7 +173,7 @@ map("n", "<leader>gb", "<cmd>Gitsigns blame<cr>", { desc = "Git Blame" })
 map("n", "<leader>gcb", "<cmd>Gitsigns toggle_current_line_blame<cr>", { desc = "Git Toggle blame for current line" })
 
 -- Neotree --
-map("n", "<C-n>", "<cmd>Neotree toggle<cr>", { desc = "Neotree Toggle file tree", noremap = true })
+map("n", "<C-n>", "<cmd>Neotree toggle right<cr>", { desc = "Neotree Toggle file tree", noremap = true })
 map(
 	"n",
 	"<leader>e",
@@ -209,4 +209,4 @@ map("n", "<leader>ww", function()
 end, { noremap = true })
 
 --Undotree--
-map("n", "<leader>u", "<cmd>lua require('undotree').toggle()<cr>")
+map("n", "<leader>u", "<cmd>UndotreeToggle<cr>")

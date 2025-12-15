@@ -12,7 +12,7 @@ local servers = {
 	"cssls",
 	"clangd",
 	"rust",
-	"typescript_language_server",
+	-- "typescript_language_server", -- <-- broken for now
 	"pyright",
 	"typos_lsp",
 	"wgsl_analyzer",
