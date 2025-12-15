@@ -242,6 +242,15 @@ return {
 		"nvim-tree/nvim-tree.lua",
 		enabled = false,
 	},
+	{
+		"jiaoshijie/undotree",
+		opts = {
+			window = {
+				winblend = 40,
+				border = "single", -- The string values are the same as those described in 'winborder'.
+			},
+		},
+	},
 	-- {
 	-- 	"mason-org/mason.nvim",
 	--    lazy = false,

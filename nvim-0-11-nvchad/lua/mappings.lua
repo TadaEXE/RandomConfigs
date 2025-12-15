@@ -161,7 +161,12 @@ map("n", "<leader>b", function()
 		shorten_path = true,
 	})
 end, { desc = "Telescope Open buffer view" })
-map("n", "<leader>o", tsbuiltin.oldfiles, { desc = "Telescope Open old files" })
+map("n", "<leader>fk", tsbuiltin.keymaps, { desc = "Telescope Open keymap search" })
+map("n", "<leader>j", function()
+  tsbuiltin.jumplist({
+    initial_mode = "normal",
+  })
+end, { desc = "Telescope Open jumplist" })
 
 -- Git --
 map("n", "<leader>gb", "<cmd>Gitsigns blame<cr>", { desc = "Git Blame" })
@@ -202,3 +207,6 @@ map("n", "<leader>kl", require("ctoggle").vsplit, { desc = "C/C++ Toggle header/
 map("n", "<leader>ww", function()
 	require("win_resize").start()
 end, { noremap = true })
+
+--Undotree--
+map("n", "<leader>u", "<cmd>lua require('undotree').toggle()<cr>")
