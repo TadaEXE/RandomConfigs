@@ -1,4 +1,7 @@
 return {
+  {
+    "TadaEXE/winctrl.nvim"
+  },
 	{
 		"kawre/leetcode.nvim",
 		lazy = false,
