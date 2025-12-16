@@ -25,7 +25,7 @@ require("cmake-tools").setup {
   },
   cmake_dap_configuration = {                -- debug settings for cmake
     name = "cpp",
-    type = "codelldb",
+    type = "gdb",
     request = "launch",
     stopOnEntry = true,
     runInTerminal = true,

@@ -1,7 +1,7 @@
 return {
-  {
-    "TadaEXE/winctrl.nvim"
-  },
+	{
+		"TadaEXE/winctrl.nvim",
+	},
 	{
 		"kawre/leetcode.nvim",
 		lazy = false,
@@ -78,6 +78,10 @@ return {
 			dap.listeners.before.event_exited["dapui_config"] = function()
 				dapui.close()
 			end
+
+			vim.api.nvim_create_user_command("DapUi", function(cmd)
+				dapui.toggle(cmd.args)
+			end, {nargs='*'})
 		end,
 	},
 	{
@@ -96,9 +100,9 @@ return {
 		config = function(_, _)
 			vim.fn.sign_define("DapBreakpoint", { text = "󰯰", texthl = "", linehl = "", numhl = "" })
 			local dap = require("dap")
-			dap.adapters.codelldb = {
+			dap.adapters.gdb = {
 				type = "executable",
-				command = "codelldb", -- or if not in $PATH: "/absolute/path/to/codelldb"
+				command = "gdb", -- or if not in $PATH: "/absolute/path/to/codelldb"
 
 				-- On windows you may have to uncomment this:
 				-- detached = false,
@@ -247,7 +251,7 @@ return {
 	},
 	{
 		"mbbill/undotree",
-    lazy = false,
+		lazy = false,
 		-- opts = {
 		-- 	window = {
 		-- 		winblend = 40,

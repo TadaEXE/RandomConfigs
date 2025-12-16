@@ -137,13 +137,16 @@ end, { desc = "Harpoon Open list item 4", noremap = true })
 
 -- DAP --
 map("n", "<leader>db", "<cmd> DapToggleBreakpoint <cr>", { desc = "DAP Add breakpoint at line" })
-map("n", "<leader>ds", "<cmd> DapStepOver <cr>", { desc = "DAP Step over" })
-map("n", "<leader>di", "<cmd> DapStepInto <cr>", { desc = "DAP Step into" })
-map("n", "<leader>do", "<cmd> DapStepOut <cr>", { desc = "DAP Step out" })
+map("n", "<F8>", "<cmd> DapStepOver <cr>", { desc = "DAP Step over" })
+map("n", "<F9>", "<cmd> DapStepInto <cr>", { desc = "DAP Step into" })
+map("n", "<F10>", "<cmd> DapStepOut <cr>", { desc = "DAP Step out" })
 map("n", "<leader>dh", function()
 	require("dap.ui.widgets").hover()
 end, { desc = "Dap Hover" })
-map("n", "<leader>dr", "<cmd> DapContinue <cr>", { desc = "DAP Start or continue the debugger" })
+map("n", "<F7>", "<cmd> DapContinue <cr>", { desc = "DAP Start or continue the debugger" })
+map({ "n", "v" }, "<leader>de", function()
+	require("dapui").eval()
+end, { desc = "DAP Start or continue the debugger" })
 
 -- Tabs --
 map("n", "<leader>1", "<cmd>tabn 1<cr>", { desc = "Tabs Go to tab 1" })
