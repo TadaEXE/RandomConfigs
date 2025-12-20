@@ -19,6 +19,7 @@ local servers = {
   "svelteserver",
   "gdscript",
   "csharp_ls",
+  "marksman",
 }
 
 vim.lsp.inlay_hint.enable(true)
