@@ -40,11 +40,6 @@ return {
 		lazy = false,
 	},
 	{
-		"pmizio/typescript-tools.nvim",
-		dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-		opts = {},
-	},
-	{
 		"Shatur/neovim-session-manager",
 		dependencies = { "nvim-lua/plenary.nvim" },
 		lazy = false,

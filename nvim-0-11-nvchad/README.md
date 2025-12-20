@@ -12,5 +12,6 @@ Make sure to mason install:
       rust-analyzer
       stylua
       svelte-language-server
+      typescript-language-server
       typos-lsp
       wgsl-analyzer
