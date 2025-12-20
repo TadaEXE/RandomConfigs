@@ -147,6 +147,11 @@ map("n", "<F7>", "<cmd> DapContinue <cr>", { desc = "DAP Start or continue the d
 map({ "n", "v" }, "<leader>de", function()
 	require("dapui").eval()
 end, { desc = "DAP Start or continue the debugger" })
+map("n", "<F6>", function()
+	require("dap").terminate()
+	require("dap").run_last()
+end, { desc = "DAP Rerun last session" })
+map("n", "<F4>", "<cmd>DapTerminate<cr><cmd>DapUi<cr>", { desc = "DAP Terminate session and hide ui" })
 
 -- Tabs --
 map("n", "<leader>1", "<cmd>tabn 1<cr>", { desc = "Tabs Go to tab 1" })
