@@ -2,6 +2,10 @@ return {
 	{
 		"TadaEXE/winctrl.nvim",
 	},
+  {
+    "tpope/vim-surround",
+    lazy = false,
+  },
 	{
 		"kawre/leetcode.nvim",
 		lazy = false,

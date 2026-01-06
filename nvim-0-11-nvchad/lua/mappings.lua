@@ -13,7 +13,29 @@ local function replace_at(r, c1)
 	feed("r<cr>")
 end
 
+local function surround_with(l, r)
+	return "<cmd>'<s/^\\s*/\\0" .. l .. "/ | '>s/\\s*$/" .. r .. "/ | noh <cr>"
+end
+
 -- System --
+-- map("v", "<leader>(", function()
+-- 	feed(surround_with("(", ")"))
+-- end, { desc = "System Surround selection with ( )" })
+-- map("v", "<leader>{", function()
+-- 	feed(surround_with("{", "}"))
+-- end, { desc = "System Surround selection with { }" })
+-- map("v", "<leader>[", function()
+-- 	feed("xi[<esc>pi]<esc>")
+-- end, { desc = "System Surround selection with [ ]" })
+-- map("v", "<leader><", function()
+-- 	feed("xi<<esc>pi><esc>")
+-- end, { desc = "System Surround selection with < >" })
+-- map("v", "<leader>'", function()
+-- 	feed("xi'<esc>pi'<esc>")
+-- end, { desc = "System Surround selection with ' '" })
+-- map("v", '<leader>"', function()
+-- 	feed('xi"<esc>pi"<esc>')
+-- end, { desc = 'System Surround selection with " "' })
 map("i", "jf", "<ESC>", { desc = "System go normal mode" })
 map("i", "fj", "<ESC>", { desc = "System go normal mode" })
 map({ "n" }, "<C-s>", "<cmd> w <cr>", { desc = "System save current buffer to file" })
