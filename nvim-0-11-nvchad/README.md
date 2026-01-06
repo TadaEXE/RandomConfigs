@@ -8,6 +8,7 @@ Make sure to mason install:
       html-lsp
       lua-language-server
       marksman
+      neocmakelsp
       pyright
       rust-analyzer
       stylua

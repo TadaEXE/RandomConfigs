@@ -20,6 +20,7 @@ local servers = {
   "gdscript",
   "csharp_ls",
   "marksman",
+  "neocmake",
 }
 
 vim.lsp.inlay_hint.enable(true)
