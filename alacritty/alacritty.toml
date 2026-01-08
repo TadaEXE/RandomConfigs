@@ -1,4 +1,4 @@
-[terminal.shell]
+[shell]
 program = "/usr/bin/zsh"
 args = ["-l"]
 
@@ -27,5 +27,3 @@ style  = "Italic"
 [font.bold_italic]
 family = "JetBrainsMonoNL Nerd Font Mono"
 style  = "Bold Italic"
-
-[terminal]
